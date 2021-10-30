@@ -70,7 +70,7 @@ grps = users_db['GROUPS']
 
 
 # Stats Of Your Bot
-@Client.on_message(command("stats"))
+@Client.on_message(command("ustats"))
 @sudo_users_only
 async def stats(_, message: Message):
     users = col.find({})
@@ -104,7 +104,7 @@ async def stats(_, message: Message):
 
 @Client.on_message(
     filters.private
-    & filters.command("broadcast")
+    & filters.command("mbroadcast")
     & filters.user(OWNER_ID)
     & filters.reply
 )
@@ -112,7 +112,7 @@ async def broadcast_handler_open(_, m: Message):
     await main_broadcast_handler(m, db)
 
 
-@Client.on_message(filters.private & filters.command("block"))
+@Client.on_message(filters.private & filters.command("mblock"))
 @sudo_users_only
 async def ban(c: Client, m: Message):
     if len(m.command) == 1:
@@ -147,7 +147,7 @@ async def ban(c: Client, m: Message):
 
 
 # Unblock User
-@Client.on_message(filters.private & filters.command("unblock"))
+@Client.on_message(filters.private & filters.command("munblock"))
 @sudo_users_only
 async def unban(c: Client, m: Message):
     if len(m.command) == 1:
@@ -176,7 +176,7 @@ async def unban(c: Client, m: Message):
 
 
 # Blocked User List
-@Client.on_message(filters.private & filters.command("blocklist"))
+@Client.on_message(filters.private & filters.command("mblocklist"))
 @sudo_users_only
 async def _banned_usrs(_, m: Message):
     all_banned_users = await db.get_all_banned_users()
@@ -320,7 +320,7 @@ def _check_heroku(func):
     return heroku_cli
 
 
-@Client.on_message(command("logs"))
+@Client.on_message(command("mlogs"))
 @sudo_users_only
 @_check_heroku
 async def logswen(client: Client, message: Message, happ):
@@ -331,7 +331,7 @@ async def logswen(client: Client, message: Message, happ):
 
 
 # Restart Bot
-@Client.on_message(command("restart") & filters.user(OWNER_ID))
+@Client.on_message(command("mrestart") & filters.user(OWNER_ID))
 @_check_heroku
 async def restart(client: Client, message: Message, hap):
     await message.reply_text("`restarting now, please wait...`")
@@ -416,7 +416,7 @@ def fetch_heroku_git_url(api_key, app_name):
     return heroku_app.git_url.replace("https://", "https://api:" + api_key + "@")
 
 
-@Client.on_message(command("usage"))
+@Client.on_message(command("musage"))
 @sudo_users_only
 @_check_heroku
 async def gib_usage(client, message, hc):
@@ -470,7 +470,7 @@ async def gib_usage(client, message, hc):
 
 # eval and shell modules
 # copyright VeezProject 2021
-@Client.on_message(command("eval") & ~filters.edited)
+@Client.on_message(command("exec") & ~filters.edited)
 @sudo_users_only
 async def executor(client, message):
     if len(message.command) < 2:
@@ -546,7 +546,7 @@ async def runtime_func_cq(_, cq):
     await cq.answer(runtime, show_alert=True)
 
 
-@Client.on_message(command("sh") & ~filters.edited)
+@Client.on_message(command("shell") & ~filters.edited)
 @sudo_users_only
 async def shellrunner(client, message):
     if len(message.command) < 2:
@@ -648,7 +648,7 @@ async def give_sysinfo(client, message):
     await message.reply(somsg)
 
 
-@Client.on_message(command("speedtest") & ~filters.edited)
+@Client.on_message(command("mspeedtest") & ~filters.edited)
 @sudo_users_only
 def speedtest_(_,message):
     speed = speedtest.Speedtest()
