@@ -38,7 +38,7 @@ async def addchannel(client, message):
         invitelink = await client.export_chat_invite_link(chid)
     except:
         await message.reply_text("<b>promote me as admin first !</b>")
-        await message.reply_sticker("CAACAgUAAx0CRJlrWAABAkcSYWoVTyDAC0f6A28bYQbTufgQEdQAAlYDAAK1iPFWodSjgGfzQs8hBA")
+        await message.reply_sticker("CAACAgUAAx0CYPNCJwACJqRhfoSwgydcI9hl2Qc8-wS7DyYe0gAC1wIAAi4IEVRVQejNKPVGcSEE")
         return
     try:
         user = await USER.get_me()
@@ -47,7 +47,7 @@ async def addchannel(client, message):
     try:
         await USER.join_chat(invitelink)
         await USER.send_message(message.chat.id, "🤖: i'm joined here for playing music on voice chat")
-        await USER.send_sticker(message.chat.id, "CAACAgUAAx0CRJlrWAABAkcSYWoVTyDAC0f6A28bYQbTufgQEdQAAlYDAAK1iPFWodSjgGfzQs8hBA")
+        await USER.send_sticker(message.chat.id, "CAACAgUAAx0CYPNCJwACJpthfoPdqrvoutRwQzk_v9bqUyOnugACRgADE_yaMj3RPONrfXfZIQQ")
     except UserAlreadyParticipant:
         await message.reply_text(f"<b>✅ userbot already joined chat</b>")
     except Exception as e:
@@ -64,8 +64,8 @@ async def addchannel(client, message):
 @authorized_users_only
 async def rem(client, message):
     try:
-        await USER.send_sticker(message.chat.id, "CAACAgUAAx0CYPNCJwACA0RhbkLHaItFAAFFSUQZW3YhLiqJb2MAAgYFAAIclOFWYPPBpmhRMYUhBA")
         await USER.send_message(message.chat.id, "✅ I'm leaving your group, bye bye!")
+        await USER.send_sticker(message.chat.id, "CAACAgUAAx0CYPNCJwACJpdhfoO6uBuC9b2EglpYeiNKOMtqJAACNQADE_yaMk-0JIP096z2IQQ")
         await USER.leave_chat(message.chat.id)
     except:
         await message.reply_text("<b>user couldn't leave your group, may be floodwaits.\n\nor manually kick me from your group</b>")
