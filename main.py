@@ -1,4 +1,5 @@
 import requests
+from pytgcalls import idle
 from pytgcalls import PyTgCalls
 from pyrogram import Client as Bot
 
