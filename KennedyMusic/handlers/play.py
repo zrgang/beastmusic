@@ -446,27 +446,7 @@ async def m_cb(b, cb):
                 await cb.message.edit(mmk, reply_markup=keyboard)
 
     elif type_ == "leave":
-        kntls = "✅ __The Userbot has disconnected from voice chat__"
-        if chet_id in callsmusic.pytgcalls.active_calls:
-            try:
-                callsmusic.queues.clear(chet_id)
-            except QueueEmpty:
-                pass
-
-            callsmusic.pytgcalls.leave_group_call(chet_id)
-            await cb.message.edit(
-                    kntls,
-                    reply_markup=InlineKeyboardMarkup(
-                        [[InlineKeyboardButton("🗑 Close", callback_data="close")]]
-                    ),
-                )
-        else:
-            await cb.answer(
-                "assistant is not connected to voice chat !", show_alert=True
-            )
-
-    elif type_ == "entot":
-        kntls = "❌ __Canceled to playing tis audio__"
+        kntls = f"✅ Streaming ended\n\n» **userbot leaving** voice chat"
         if chet_id in callsmusic.pytgcalls.active_calls:
             try:
                 callsmusic.queues.clear(chet_id)
@@ -587,7 +567,7 @@ async def play(_, message: Message):
         keyboard = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("❌ Cancel", callback_data="entot"),
+                    InlineKeyboardButton("❌ Cancel", callback_data="leave"),
                     InlineKeyboardButton("🗑️ Close", callback_data="close"),
                 ]
             ]
@@ -634,7 +614,7 @@ async def play(_, message: Message):
         keyboard = InlineKeyboardMarkup(
          [
             [
-                InlineKeyboardButton("❌ Cancel", callback_data="entot"),
+                InlineKeyboardButton("❌ Cancel", callback_data="leave"),
                 InlineKeyboardButton("🗑️ Close", callback_data="close"),
             ]
          ]
@@ -725,7 +705,7 @@ async def play(_, message: Message):
             keyboard = InlineKeyboardMarkup(
                  [
             [
-                InlineKeyboardButton("❌ Cancel", callback_data="entot"),
+                InlineKeyboardButton("❌ Cancel", callback_data="leave"),
                 InlineKeyboardButton("🗑️ Close", callback_data="close"),
             ],
         ]
