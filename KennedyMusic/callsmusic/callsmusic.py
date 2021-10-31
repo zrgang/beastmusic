@@ -1,4 +1,5 @@
 from pyrogram import Client
+from pytgcalls import idle
 from pytgcalls import PyTgCalls
 
 from KennedyMusic.config import API_HASH, API_ID, SESSION_NAME
@@ -19,4 +20,4 @@ def on_stream_end(chat_id: int) -> None:
         pytgcalls.change_stream(chat_id, queues.get(chat_id)["file"])
 
 
-run = pytgcalls.run
+idle = pytgcalls.idle
