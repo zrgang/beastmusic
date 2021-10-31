@@ -1,4 +1,5 @@
 import requests
+from pytgcalls import PyTgCalls
 from pyrogram import Client as Bot
 
 from KennedyMusic.callsmusic import run
@@ -17,7 +18,9 @@ bot = Bot(
     plugins=dict(root="KennedyMusic/handlers")
 )
 
+call_py = PyTgCalls(bot)
+
 print("[INFO]: YOUR MUSIC BOT STARTED!")
 
-bot.start()
-run()
+call_py.start()
+idle()
