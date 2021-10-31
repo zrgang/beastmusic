@@ -21,7 +21,5 @@ bot = Bot(
 
 call_py = PyTgCalls(bot)
 
-print("[INFO]: YOUR MUSIC BOT STARTED!")
-
 call_py.start()
 idle()
