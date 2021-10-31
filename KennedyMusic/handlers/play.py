@@ -567,7 +567,7 @@ async def play(_, message: Message):
         keyboard = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("⚙️ Menu", callback_data="menu"),
+                    InlineKeyboardButton("❌ Cancel", callback_data="leave"),
                     InlineKeyboardButton("🗑️ Close", callback_data="close"),
                 ]
             ]
@@ -607,7 +607,6 @@ async def play(_, message: Message):
             views = results[0]["views"]
         except Exception as e:
             await lel.delete()
-            await lel.edit("❌ **couldn't find song**")
             print(str(e))
             return
         dlurl=url
@@ -615,7 +614,7 @@ async def play(_, message: Message):
         keyboard = InlineKeyboardMarkup(
          [
             [
-                InlineKeyboardButton("⚙️ Menu", callback_data="menu"),
+                InlineKeyboardButton("❌ Cancel", callback_data="leave"),
                 InlineKeyboardButton("🗑️ Close", callback_data="close"),
             ]
          ]
@@ -706,7 +705,7 @@ async def play(_, message: Message):
             keyboard = InlineKeyboardMarkup(
                  [
             [
-                InlineKeyboardButton("❌ Cancel", callback_data="menu"),
+                InlineKeyboardButton("❌ Cancel", callback_data="leave"),
                 InlineKeyboardButton("🗑️ Close", callback_data="close"),
             ],
         ]
