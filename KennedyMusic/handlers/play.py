@@ -658,12 +658,12 @@ async def play(_, message: Message):
                     [InlineKeyboardButton(text="🗑 Close", callback_data="cls")],
                 ]
             )
-            await message.reply_photo(
+            await lel.delete()
+            await _.send_photo(chid,
                 photo=f"{THUMB_IMG}", 
                 caption=toxxt, 
                 reply_markup=keyboard
             )
-            await lel.delete()
             return
 
         except:
