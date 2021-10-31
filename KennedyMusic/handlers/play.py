@@ -589,7 +589,7 @@ async def play(_, message: Message):
         )
     elif urls:
         query = toxt
-        await lel.edit("🔄 **Processing**")
+        await lel.delete()
         ydl_opts = {"format": "bestaudio[ext=m4a]"}
         try:
             results = YoutubeSearch(query, max_results=1).to_dict()
@@ -658,7 +658,6 @@ async def play(_, message: Message):
                     [InlineKeyboardButton(text="🗑 Close", callback_data="cls")],
                 ]
             )
-            await lel.delete()
             await message.reply_photo(
                 photo=f"{THUMB_IMG}", 
                 caption=toxxt, 
