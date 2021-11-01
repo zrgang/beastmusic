@@ -147,7 +147,7 @@ async def playlist(client, message):
                             
 # ============================= Settings =========================================
 def updated_stats(chat, queue, vol=100):
-    if chat.id in callsmusic.active_calls:
+    if chat.id in callsmusic.active_chats:
         stats = "⚙️ Settings from **{}**".format(chat.title)
         if len(que) > 0:
             stats += "\n\n"
@@ -187,7 +187,7 @@ def r_ply(type_):
 @authorized_users_only
 async def settings(client, message):
     playing = None
-    if message.chat.id in callsmusic.active_calls:
+    if message.chat.id in callsmusic.active_chats:
         playing = True
     queue = que.get(message.chat.id)
     stats = updated_stats(message.chat, queue)
@@ -322,8 +322,8 @@ async def m_cb(b, cb):
 
     the_data = cb.message.reply_markup.inline_keyboard[0][0].callback_data
     if type_ == "pause":
-        if (chet_id not in callsmusic.active_calls) or (
-            callsmusic.active_calls[chet_id] == "paused"
+        if (chet_id not in callsmusic.active_chats) or (
+            callsmusic.active_chats[chet_id] == "paused"
         ):
             await cb.answer(
                 "assistant is not connected to voice chat !", show_alert=True
@@ -337,8 +337,8 @@ async def m_cb(b, cb):
             )
 
     elif type_ == "play":
-        if (chet_id not in callsmusic.active_calls) or (
-            callsmusic.active_calls[chet_id] == "playing"
+        if (chet_id not in callsmusic.active_chats) or (
+            callsmusic.active_chats[chet_id] == "playing"
         ):
             await cb.answer(
                 "assistant is not connected to voice chat !", show_alert=True
@@ -375,8 +375,8 @@ async def m_cb(b, cb):
 
     elif type_ == "resume":
         psn = "▶ music playback has resumed"
-        if (chet_id not in callsmusic.active_calls) or (
-            callsmusic.active_calls[chet_id] == "playing"
+        if (chet_id not in callsmusic.active_chats) or (
+            callsmusic.active_chats[chet_id] == "playing"
         ):
             await cb.answer(
                 "voice chat is not connected or already playing", show_alert=True
@@ -387,8 +387,8 @@ async def m_cb(b, cb):
 
     elif type_ == "puse":
         mps = "⏸ music playback has paused"
-        if (chet_id not in callsmusic.active_calls) or (
-            callsmusic.active_calls[chet_id] == "paused"
+        if (chet_id not in callsmusic.active_chats) or (
+            callsmusic.active_chats[chet_id] == "paused"
         ):
             await cb.answer(
                 "voice chat is not connected or already paused", show_alert=True
@@ -423,7 +423,7 @@ async def m_cb(b, cb):
         mmk = "⏭ __You've skipped to the next music__"
         if qeue:
             qeue.pop(0)
-        if chet_id not in callsmusic.active_calls:
+        if chet_id not in callsmusic.active_chats:
             await cb.answer(
                 "assistant is not connected to voice chat !", show_alert=True
             )
@@ -447,7 +447,7 @@ async def m_cb(b, cb):
 
     elif type_ == "leave":
         kntls = f"✅ Streaming ended\n\n» **userbot leaving** voice chat"
-        if chet_id in callsmusic.active_calls:
+        if chet_id in callsmusic.active_chats:
             try:
                 callsmusic.queues.clear(chet_id)
             except QueueEmpty:
@@ -713,7 +713,7 @@ async def play(_, message: Message):
             await generate_cover(title, thumbnail, ctitle)
             file_path = await convert(youtube.download(url))   
     chat_id = get_chat_id(message.chat)
-    if chat_id in callsmusic.active_calls:
+    if chat_id in callsmusic.active_chats:
         position = await queues.put(chat_id, file=file_path)
         qeue = que.get(chat_id)
         s_name = title
@@ -813,7 +813,7 @@ async def lol_cb(b, cb):
     requested_by = useer_name
     await generate_cover(title, thumbnail, ctitle)
     file_path = await convert(youtube.download(url))  
-    if chat_id in callsmusic.active_calls:
+    if chat_id in callsmusic.active_chats:
         position = await queues.put(chat_id, file=file_path)
         qeue = que.get(chat_id)
         s_name = title
@@ -975,7 +975,7 @@ async def ytplay(_, message: Message):
     await generate_cover(title, thumbnail, ctitle)
     file_path = await convert(youtube.download(url))
     chat_id = get_chat_id(message.chat)
-    if chat_id in callsmusic.active_calls:
+    if chat_id in callsmusic.active_chats:
         position = await queues.put(chat_id, file=file_path)
         qeue = que.get(chat_id)
         s_name = title
