@@ -1,7 +1,7 @@
 from asyncio import QueueEmpty
 
 from KennedyMusic.callsmusic import callsmusic
-from KennedyMusic queues import queues
+from KennedyMusic.queues import queues
 from KennedyMusic.config import BOT_USERNAME, que
 from KennedyMusic.cache.admins import admins
 from KennedyMusic.handlers.play import cb_admin_check
