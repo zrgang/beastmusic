@@ -431,7 +431,7 @@ async def m_cb(b, cb):
             callsmusic.queues.task_done(chet_id)
 
             if callsmusic.queues.is_empty(chet_id):
-                callsmusic.leave_group_call(chet_id)
+                callsmusic.stop(chet_id)
 
                 await cb.message.edit(
                     nmq,
@@ -453,7 +453,7 @@ async def m_cb(b, cb):
             except QueueEmpty:
                 pass
 
-            callsmusic.leave_group_call(chet_id)
+            callsmusic.stop(chet_id)
             await cb.message.edit(
                     kntls,
                     reply_markup=InlineKeyboardMarkup(
