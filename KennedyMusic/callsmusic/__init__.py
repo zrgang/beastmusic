@@ -1,2 +1,6 @@
-from KennedyMusic.callsmusic.queues import queues
-from KennedyMusic.callsmusic.callsmusic import pytgcalls, run
+from pyrogram import Client
+
+from KennedyMusic import config
+
+client = Client(config.SESSION_NAME, config.API_ID, config.API_HASH)
+run = client.run
