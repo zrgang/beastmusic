@@ -329,7 +329,7 @@ async def m_cb(b, cb):
                 "assistant is not connected to voice chat !", show_alert=True
             )
         else:
-            callsmusic.pause_stream(chet_id)
+            callsmusic.pause(chet_id)
 
             await cb.answer("music paused")
             await cb.message.edit(
@@ -344,7 +344,7 @@ async def m_cb(b, cb):
                 "assistant is not connected to voice chat !", show_alert=True
             )
         else:
-            callsmusic.resume_stream(chet_id)
+            callsmusic.resume(chet_id)
             await cb.answer("music resumed")
             await cb.message.edit(
                 updated_stats(m_chat, qeue), reply_markup=r_ply("pause")
@@ -382,7 +382,7 @@ async def m_cb(b, cb):
                 "voice chat is not connected or already playing", show_alert=True
             )
         else:
-            callsmusic.resume_stream(chet_id)
+            callsmusic.resume(chet_id)
             await cb.message.edit(psn, reply_markup=keyboard)
 
     elif type_ == "puse":
@@ -394,7 +394,7 @@ async def m_cb(b, cb):
                 "voice chat is not connected or already paused", show_alert=True
             )
         else:
-            callsmusic.pause_stream(chet_id)
+            callsmusic.pause(chet_id)
             await cb.message.edit(mps, reply_markup=keyboard)
 
     elif type_ == "cls":
@@ -453,7 +453,7 @@ async def m_cb(b, cb):
             except QueueEmpty:
                 pass
 
-            callsmusic.stop(chet_id)
+            await callsmusic.stop(chet_id)
             await cb.message.edit(
                     kntls,
                     reply_markup=InlineKeyboardMarkup(
