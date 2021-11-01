@@ -739,7 +739,7 @@ async def play(_, message: Message):
         appendable = [s_name, r_by, loc]
         qeue.append(appendable)
         try:
-            callsmusic.set_stream(chat_id, file_path)
+            await callsmusic.set_stream(chat_id, file_path)
         except:
             message.reply("😕 **voice chat not found**\n\n» please turn on the voice chat first")
             return
@@ -843,7 +843,7 @@ async def lol_cb(b, cb):
         loc = file_path
         appendable = [s_name, r_by, loc]
         qeue.append(appendable)
-        callsmusic.set_stream(chat_id, file_path)
+        await callsmusic.set_stream(chat_id, file_path)
         await b.send_photo(
         chat_id,
         photo="final.png",
@@ -1001,7 +1001,7 @@ async def ytplay(_, message: Message):
         appendable = [s_name, r_by, loc]
         qeue.append(appendable)
         try:
-            callsmusic.set_stream(chat_id, file_path)
+            await callsmusic.set_stream(chat_id, file_path)
         except:
             message.reply("** sorry, no active voice chat here, please turn on the voice chat first**")
             return
