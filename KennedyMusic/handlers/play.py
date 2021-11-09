@@ -650,7 +650,7 @@ async def play(_, message: Message):
                     [
                         InlineKeyboardButton("1️⃣", callback_data=f'plll 0|{query}|{user_id}'),
                 ]
-            )
+            ]
             await message.reply_photo(
                 photo=f"{THUMB_IMG}", 
                 caption=toxxt, 
